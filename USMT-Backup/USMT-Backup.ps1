@@ -69,6 +69,4 @@ else {
     NET USE M: /delete /Y
 
     Write-Host "Done! Migration file is saved in " -foregroundcolor green -nonewline; Write-Host "$MigStore\$env:COMPUTERNAME\USMT\USMT.MIG" -foregroundcolor cyan
-
-    Read-Host "Press Enter to exit" | Out-Null
 }
