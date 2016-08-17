@@ -2,8 +2,7 @@
 .SYNOPSIS
     Switch one AD group for another.
 .DESCRIPTION
-    This script will remove user from SourceGroup and add to TargetGroup.
-    Primarily to be used for departments\acl migration.
+    This script will remove users from SourceGroup and add to TargetGroup.
 .NOTES
     Version:            1.0
     Author:             Daniel Allen

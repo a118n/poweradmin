@@ -4,7 +4,7 @@
 .DESCRIPTION
     This script will create a backup of user's profile folder (Usually found in C:\Users)
     as well as all non-system folders and files found in the root of C:\ Drive.
-    The backup is done via robocopy utility.
+    The backup is done via robocopy utility. By defalut, it uses 16 threads (/MT:16 switch), but if you're having problems you could adjust /MT switch or remove it altogether.
 
 .NOTES
     Version:            1.2
