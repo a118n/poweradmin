@@ -23,7 +23,7 @@ $SMTPServer = "10.10.10.10"
 $SMTPPort = "25"
 $Recipients= "john.doe@domain.com", "jane.doe@domain.com"
 
-$Userlist = Get-ADUser -SearchBase $SearchBase -Filter * -Properties DisplayName,Description,Office,Mail,WhenCreated,WhenChanged,PwdLastSet,LastLogonTimeStamp | Where {$_.WhenCreated -ge $Date} | Select-Object DisplayName,Description,Office,Mail,WhenCreated,WhenChanged,PwdLastSet,@{n='LastLogonTimeStamp';e={[DateTime]::FromFileTime($_.LastLogonTimeStamp)}} | Export-CSV -Path "NewAccounts-$(Get-Date -f dd.MM.yyyy).csv" -NoTypeInformation
+$Userlist = Get-ADUser -SearchBase $SearchBase -Filter {WhenCreated -ge $Date} -Properties DisplayName,Description,Office,Mail,WhenCreated,WhenChanged,PwdLastSet,LastLogonTimeStamp | Select-Object DisplayName,Description,Office,Mail,WhenCreated,WhenChanged,PwdLastSet,@{n='LastLogonTimeStamp';e={[DateTime]::FromFileTime($_.LastLogonTimeStamp)}} | Export-CSV -Path "NewAccounts-$(Get-Date -f dd.MM.yyyy).csv" -NoTypeInformation
 
 $Attachment = "NewAccounts-$(Get-Date -f dd.MM.yyyy).csv"
 $Body = "<font face='Arial' size=3><p>Accounts created in the last week, starting from $($Date.ToString("dd.MM.yyyy HH:mm"))</p></font>"
