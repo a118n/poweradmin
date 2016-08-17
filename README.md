@@ -6,71 +6,71 @@ More stuff to be added soon.
 Most scripts have a detailed description in the header's `.DESCRIPTION` field, so here's just a quick summary:
 
 ### Active Directory
-* AD-Connect-HomeDrives.ps1
+* **AD-Connect-HomeDrives.ps1**
 
   Create home folders and connect them as home drive to AD users.
 
-* AD-Disable-Inactive-Users.ps1
+* **AD-Disable-Inactive-Users.ps1**
 
   Disable users that haven't logged in for a while.
 
-* AD-Get-New-Accounts.ps1
+* **AD-Get-New-Accounts.ps1**
 
   Get all accounts that have been created recently.
 
-* AD-Switch-Group.ps1
+* **AD-Switch-Group.ps1**
 
   Remove users from one group and add to another.
 
-* Get-Inactive-Computers.ps1
+* **Get-Inactive-Computers.ps1**
 
   Get a list of computers where nobody logged in for a while.
 
-* Get-LockedOutLocation.ps1
+* **Get-LockedOutLocation.ps1**
 
   An exellent function by [Jason Walker](https://blogs.technet.microsoft.com/heyscriptingguy/2012/12/27/use-powershell-to-find-the-location-of-a-locked-out-user/) to query PDC for a computer that processed a failed user logon attempt which caused the user account to become locked out.
 
 ### Backup
-* USMT-Backup
+* **USMT-Backup**
 
   Powershell wrappers for Microsoft's [User State Migration Tool](https://technet.microsoft.com/en-us/library/hh825256.aspx). Basically, a one-click backup & restore solution.
 
-* Backup-UserProfile-USB.ps1
+* **Backup-UserProfile-USB.ps1**
 
   Powershell wrapper for robocopy to backup user's profile folder & other non-system folders to USB disk.
 
 ### Software
-* Install-Java.ps1
+* **Install-Java.ps1**
 
   A one-click installer and updater. Checks for the latest JRE online prior to installing. Removes unnecessary old versions. Deploys with predefined global configuration settings & exception list, so no additional configuration is required.
 
-* Uninstall-Remote.ps1
+* **Uninstall-Remote.ps1**
 
   Uninstall MSI-based software from remote PC.
 
 ### Hardware
-* New-HP-Printer-Setup.ps1
+* **New-HP-Printer-Setup.ps1**
 
   Create DHCP reservation & add a new HP printer on a print server.
 
 ### Misc
-* Clean-Spooler.ps1
+* **Clean-Spooler.ps1**
 
   Clean old spooled documents.
 
-* Find-Username.ps1
+* **Find-Username.ps1**
 
   Find computers where specified user is currently logged in.
 
-* Fix-Acl.ps1
+* **Fix-Acl.ps1**
 
   Scan all nested objects inside a folder and apply folder's ACL to them (if there's a difference).
 
-* Get-All-Computers-With-Users.ps1
+* **Get-All-Computers-With-Users.ps1**
 
   Pull all computers from DC and see who is currently logged in.
 
 
-* Get-LogOn-LogOff.ps1
+* **Get-LogOn-LogOff.ps1**
 
   Pull Logon and Logoff events from a specified computer to see who logged in / logged out and when.
