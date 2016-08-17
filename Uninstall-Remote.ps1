@@ -24,19 +24,41 @@ if (Test-Connection $Computer -Count 2 -quiet) {
     Get-Service -Name RemoteRegistry -ComputerName $Computer | Set-Service -Status Running
 
     $array = @()
+
     $UninstallKey="SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall"
     $reg=[microsoft.win32.registrykey]::OpenRemoteBaseKey('LocalMachine',$Computer)
     $regkey=$reg.OpenSubKey($UninstallKey)
     $subkeys=$regkey.GetSubKeyNames()
 
     ForEach($key in $subkeys) {
-        $thisKey=$UninstallKey+"\\"+$key
-        $thisSubKey=$reg.OpenSubKey($thisKey)
-        $obj = New-Object PSObject
-        $obj | Add-Member -MemberType NoteProperty -Name "DisplayName" -Value $($thisSubKey.GetValue("DisplayName"))
-        $obj | Add-Member -MemberType NoteProperty -Name "DisplayVersion" -Value $($thisSubKey.GetValue("DisplayVersion"))
-        $obj | Add-Member -MemberType NoteProperty -Name "UninstallString" -Value $($thisSubKey.GetValue("UninstallString"))
-        $array += $obj
+      $thisKey=$UninstallKey+"\\"+$key
+      $thisSubKey=$reg.OpenSubKey($thisKey)
+      $obj = New-Object PSObject
+      $obj | Add-Member -MemberType NoteProperty -Name "DisplayName" -Value $($thisSubKey.GetValue("DisplayName"))
+      $obj | Add-Member -MemberType NoteProperty -Name "DisplayVersion" -Value $($thisSubKey.GetValue("DisplayVersion"))
+      $obj | Add-Member -MemberType NoteProperty -Name "UninstallString" -Value $($thisSubKey.GetValue("UninstallString"))
+      $array += $obj
+    }
+
+    # if OS is 64-bit, do the same above for 64-bit node
+    $Arch = Get-WmiObject win32_operatingsystem -Computer $Computer | ForEach { $_.OSArchitecture }
+
+    if ($Arch -eq "64-bit") {
+
+      $UninstallKey="SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall"
+      $reg=[microsoft.win32.registrykey]::OpenRemoteBaseKey('LocalMachine',$Computer)
+      $regkey=$reg.OpenSubKey($UninstallKey)
+      $subkeys=$regkey.GetSubKeyNames()
+
+      ForEach($key in $subkeys) {
+          $thisKey=$UninstallKey+"\\"+$key
+          $thisSubKey=$reg.OpenSubKey($thisKey)
+          $obj = New-Object PSObject
+          $obj | Add-Member -MemberType NoteProperty -Name "DisplayName" -Value $($thisSubKey.GetValue("DisplayName"))
+          $obj | Add-Member -MemberType NoteProperty -Name "DisplayVersion" -Value $($thisSubKey.GetValue("DisplayVersion"))
+          $obj | Add-Member -MemberType NoteProperty -Name "UninstallString" -Value $($thisSubKey.GetValue("UninstallString"))
+          $array += $obj
+      }
     }
 
     $UninstallStrings = $array | Where { $_.DisplayName -like "*$SoftwareName*" } | ForEach { $_.UninstallString } | Out-String -stream
@@ -54,11 +76,9 @@ if (Test-Connection $Computer -Count 2 -quiet) {
 
         $Proc = Invoke-WmiMethod -class Win32_process -name Create -ArgumentList $CmdArgs -ComputerName $Computer
 
-        #Wait for previous uninstall to finish
+        # Wait for previous uninstall to finish
         do { Get-Process -id $Proc.ProcessId -ComputerName $Computer -ea SilentlyContinue | Out-Null } while ($?)
     }
 }
 
-else {
-    Write-Host "Computer seems to be offline" -foregroundcolor red
-}
+else { Write-Host "Computer seems to be offline" -foregroundcolor red }
