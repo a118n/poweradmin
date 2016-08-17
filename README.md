@@ -22,6 +22,10 @@ Most scripts have a detailed description in the header's `.DESCRIPTION` field, s
 
   Get all accounts that have been created recently.
 
+* **AD-Rename-User.ps1**
+
+  Rename user's AD account and notify him by email.
+
 * **AD-Switch-Group.ps1**
 
   Remove users from one group and add to another.
