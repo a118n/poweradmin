@@ -1,9 +1,9 @@
 # poweradmin
 Powershell scripts useful for Windows enterprise administration.
 
-More stuff to be added soon.
+All scripts are written by me, if not stated otherwise.
 
-Most scripts have a detailed description in the header's `.DESCRIPTION` field, so here's just a quick summary:
+For a detailed description refer to the header's `.DESCRIPTION` field, here's just a quick summary:
 
 ### Active Directory
 * **AD-Add-Users-To-Group.ps1**
