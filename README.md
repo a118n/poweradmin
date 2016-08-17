@@ -6,6 +6,10 @@ More stuff to be added soon.
 Most scripts have a detailed description in the header's `.DESCRIPTION` field, so here's just a quick summary:
 
 ### Active Directory
+* **AD-Add-Users-To-Group.ps1**
+
+  Add multiple users from CSV file to a particular group.
+
 * **AD-Connect-HomeDrives.ps1**
 
   Create home folders and connect them as home drive to AD users.
