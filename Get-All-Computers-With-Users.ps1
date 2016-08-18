@@ -39,6 +39,6 @@ ForEach ($Computer in $Computers) {
   $Array += $Obj
 }
 
-Write-Output $Array | Sort-Object -Property Name | Format-Table -AutoSize
+$Array | Sort-Object -Property Name | Out-GridView
 
 $Array | Sort-Object -Property Name | Export-CSV -Path "All-Computers-With-Users.csv" -NoTypeInformation
