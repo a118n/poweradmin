@@ -62,6 +62,10 @@ For a detailed description refer to the header's `.DESCRIPTION` field, here's ju
   Create DHCP reservation & add a new HP printer on a print server.
 
 ### Misc
+* **Set-Outlook-Signature**
+
+  Dynamically set user's signature based on his AD attributes. A modification of Daniel Classon's [script](http://www.danielclasson.com/powershell-script-to-set-outlook-signature-in-office-2010-and-office-2013-using-information-populated-from-active-directory/).
+
 * **Clean-Spooler.ps1**
 
   Clean old spooled documents.
