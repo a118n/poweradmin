@@ -82,6 +82,10 @@ For a detailed description refer to the header's `.DESCRIPTION` field, here's ju
 
   Pull all computers from DC and see who is currently logged in.
 
+* **Get-Local-Admins.ps1**
+
+  Scan all computers and see who has local admin rights.
+
 
 * **Get-LogOn-LogOff.ps1**
 
